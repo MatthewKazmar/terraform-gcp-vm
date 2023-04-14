@@ -8,7 +8,7 @@ variable "ssh_public_key" {
   type        = string
 }
 
-variable "instance_name" {
+variable "name" {
   description = "Name of the instance."
   type        = string
 }

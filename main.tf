@@ -6,7 +6,7 @@ data "google_compute_zones" "this" {
 }
 
 resource "google_compute_instance" "this" {
-  name         = var.instance_name
+  name         = var.name
   machine_type = var.machine_type
   zone         = data.google_compute_zones.this.names[0]
 
