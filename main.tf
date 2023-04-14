@@ -1,7 +1,7 @@
 data "google_compute_default_service_account" "default" {}
 
 data "google_compute_zones" "this" {
-  region = var.gcp_east_region
+  region = var.region
   status = "UP"
 }
 

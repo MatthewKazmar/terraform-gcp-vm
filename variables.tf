@@ -1,3 +1,8 @@
+variable "region" {
+  description = "GCP Region for this VM."
+  type = string
+}
+
 variable "ssh_public_key" {
   description = "The ssh public key."
   type = string
