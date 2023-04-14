@@ -19,11 +19,6 @@ variable "machine_type" {
   default     = "e2-small"
 }
 
-variable "security_group_id" {
-  description = "Security Group ID"
-  type        = string
-}
-
 variable "subnetwork_self_link" {
   description = "Subnet Self_link"
   type        = string
