@@ -3,7 +3,9 @@ data "aviatrix_account" "this" {
 }
 
 
-data "google_compute_default_service_account" "default" {}
+data "google_compute_default_service_account" "default" {
+  project = data.aviatrix_account.this.gcloud_project_id
+}
 
 data "google_compute_zones" "this" {
   region = var.region
