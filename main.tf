@@ -1,3 +1,8 @@
+data "aviatrix_account" "this" {
+  account_name = var.avx_gcp_account_name
+}
+
+
 data "google_compute_default_service_account" "default" {}
 
 data "google_compute_zones" "this" {
@@ -5,14 +10,22 @@ data "google_compute_zones" "this" {
   status = "UP"
 }
 
+
+data "google_compute_image" "this" {
+  project = data.aviatrix_account.this.gcloud_project_id
+  family  = "ubuntu-2204-lts"
+}
+
 resource "google_compute_instance" "this" {
+  project = data.aviatrix_account.this.gcloud_project_id
+
   name         = var.name
   machine_type = var.machine_type
   zone         = data.google_compute_zones.this.names[local.zone_number]
 
   boot_disk {
     initialize_params {
-      image = "projects/ubuntu-os-cloud/global/images/ubuntu-2204-jammy-v20230302"
+      image = data.google_compute_image.this.self_link
     }
   }
 
