@@ -8,7 +8,7 @@ data "google_compute_zones" "this" {
 resource "google_compute_instance" "this" {
   name         = var.name
   machine_type = var.machine_type
-  zone         = data.google_compute_zones.this.names[0]
+  zone         = data.google_compute_zones.this.names[local.zone_number]
 
   boot_disk {
     initialize_params {

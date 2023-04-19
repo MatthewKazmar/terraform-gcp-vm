@@ -30,8 +30,12 @@ variable "network_tags" {
   default     = []
 }
 
-variable "zone_number" {
+variable "instance_number" {
   description = "Zone number index as provided by the google_compute_zones data resource."
   type        = number
   default     = 0
+}
+
+locals {
+  zone_number = var.instance_number % length(data.google_compute_zones.this.names)
 }
