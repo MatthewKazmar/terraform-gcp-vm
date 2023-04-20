@@ -14,7 +14,7 @@ data "google_compute_zones" "this" {
 
 
 data "google_compute_image" "this" {
-  project = data.aviatrix_account.this.gcloud_project_id
+  project = "ubuntu-os-cloud"
   family  = "ubuntu-2204-lts"
 }
 
