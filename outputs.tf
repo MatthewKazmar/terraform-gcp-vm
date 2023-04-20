@@ -5,5 +5,10 @@ output "instance" {
 
 output "name_ip" {
   description = "Hash of name/IP"
-  value       = { (google_compute_instance.this.name) = [google_compute_instance.this.network_interface.0.access_config.0.nat_ip, google_compute_instance.this.network_interface.0.network_ip] }
+  value = {
+    (google_compute_instance.this.name) = {
+      public_ip  = google_compute_instance.this.network_interface.0.access_config.0.nat_ip,
+      private_ip = google_compute_instance.this.network_interface.0.network_ip
+    }
+  }
 }
