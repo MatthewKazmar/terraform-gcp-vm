@@ -30,7 +30,7 @@ variable "subnetwork_self_link" {
 }
 
 variable "network_tags" {
-  description = "Map of tags to apply to the instance."
+  description = "List of tags to apply to the instance."
   type        = list(string)
   default     = []
 }

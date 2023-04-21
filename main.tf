@@ -48,5 +48,5 @@ resource "google_compute_instance" "this" {
     scopes = ["cloud-platform"]
   }
 
-  tags = local.network_tags
+  tags = var.network_tags
 }
