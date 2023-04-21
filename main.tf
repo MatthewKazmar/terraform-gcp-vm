@@ -39,7 +39,9 @@ resource "google_compute_instance" "this" {
     subnetwork = var.subnetwork_self_link
     dynamic "access_config" {
       for_each = local.use_aviatrix_egress ? [] : [1]
-      content {}
+      content {
+        nat_ip = null
+      }
     }
   }
 
