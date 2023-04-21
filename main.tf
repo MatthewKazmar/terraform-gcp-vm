@@ -35,19 +35,11 @@ resource "google_compute_instance" "this" {
     ssh-keys = "ubuntu:${chomp(var.ssh_public_key)}"
   }
 
-
-  dynamic "network_interface" {
-    for_each = local.use_aviatrix_egress ? [1] : []
-    content {
-      subnetwork = var.subnetwork_self_link
-    }
-  }
-
-  dynamic "network_interface" {
-    for_each = local.use_aviatrix_egress ? [0] : [1]
-    content {
-      subnetwork = var.subnetwork_self_link
-      access_config {}
+  network_interface {
+    subnetwork = var.subnetwork_self_link
+    dynamic "access_config" {
+      for_each = local.use_aviatrix_egress ? [] : [1]
+      content {}
     }
   }
 
