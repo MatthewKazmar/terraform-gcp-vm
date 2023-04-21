@@ -42,5 +42,6 @@ variable "instance_number" {
 }
 
 locals {
-  zone_number = var.instance_number % length(data.google_compute_zones.this.names)
+  zone_number         = var.instance_number % length(data.google_compute_zones.this.names)
+  use_aviatrix_egress = contains(var.network_tags, "avx-snat-noip")
 }

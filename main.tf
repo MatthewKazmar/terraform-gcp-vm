@@ -37,11 +37,16 @@ resource "google_compute_instance" "this" {
 
   network_interface {
     subnetwork = var.subnetwork_self_link
-    access_config {}
+    dynamic "access_config" {
+      for_each = local.use_aviatrix_egress ? [] : [1]
+      content {}
+    }
   }
 
   service_account {
     email  = data.google_compute_default_service_account.default.email
     scopes = ["cloud-platform"]
   }
+
+  tags = local.network_tags
 }
